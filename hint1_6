@@ -2,3 +2,7 @@ Bitwise operators
 x & 1 retrieves last bit from x. (1001 & 1 == 1)
 x >>= 1 divides x by 2 (think 1000 (8) -> 0100 (4))
 x ^ y where x and y are either 0 or 1 will equal 0 if x == y, else 1
+
+Learn Python list comprehensions
+Python collections library especially OrderedDict
+
