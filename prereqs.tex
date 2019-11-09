@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage{minted}
+\usepackage{hyperref}
+
+\begin{document}
+\centerline{\sc \large Cryptopals Preparation}
+
+\vspace{1pc}
+
+Hi! I'm going to go over Cryptopals Set $1$ on Monday. If you are currently in or past COMP 411 and know Python3, the demo should not be hard to understand, but if not, I strongly encourage you to read through this document.
+
+\vspace{1pc}
+
+The following is installation housekeeping:
+
+\begin{itemize}
+	\item Install Python3 and pip3.
+	\item Be able to import the Python3 modules base64, binascii, collections, and Crypto.Cipher. base64, binascii, and collections should have been installed by default, so you should only have to run the following command:
+		\begin{center}
+			sudo pip3 install pycrypto
+		\end{center}
+\end{itemize}
+
+\vspace{1pc}
+
+There will also be instructional housekeeping. The first three functions are the most important to research:
+\begin{itemize}
+	\item b64encode/b64decode (module base64)
+	\item hexlify/unhexlify (module binascii)
+	\item chr/ord (built-in)
+	\item enumerate
+	\item strip
+	\item map
+	\item join
+\end{itemize}
+
+A difficult one to grasp is hexlify. It converts strings into a hexadecimal representation. Try playing around with it in Python3's interactive shell (type python3 in the terminal). You can look up a command with
+\begin{center}
+	python3 -m pydoc base64.b64encode
+	
+	python3 -m pydoc chr
+\end{center}
+
+\vspace{1pc}
+
+When I program in Python3, I'll use sets and dictionaries. Sets are unordered collections of unique items. On the other hand, dictionaries map values to keys. Dictionary values = array indices not limited to integers, while dictionary keys = array elements. 
+
+\vspace{1pc}
+
+Next, familiarity with bitwise operations will be essential when we calculate Hamming distances. Assuming x is a binary number (only 1's and 0's):
+\begin{itemize}
+	\item \verb|x & 1| retrieves its last bit
+		\begin{center}
+			\verb|1001 & 1 = 1|
+
+			\verb|1000 & 1 = 0|
+		\end{center}
+		Note: \verb|1001 & 1 = 1001 & 0001 = 0001| if we want to be more precise
+
+	\item \verb|x >> y| shifts x to its left by y
+		\begin{center}
+			\verb|1001 >> 1 = 100|
+
+			\verb|1001 >> 2 = 10|
+		\end{center}
+		Note: \verb|1001 >> 1 = 0100| if we want to be more precise
+
+	\item \verb|x ^ y| returns 0 if both bits are equal, else 1, if x and y are 0 or 1
+\end{itemize}
+
+\vspace{1pc}
+
+Finally, list comprehensions in Python3 are essentially one line for loops. The following two are the same:
+\begin{minted}[mathescape, linenos]{python}
+	
+	y = []
+	for x in range(4):
+		y.append(x)
+	
+	y = [x for x in range(4)]
+
+	# Note: Printing y would result in [0, 1, 2, 3]
+\end{minted}
+
+\vspace{1pc}
+
+I hope you found some of this useful. Feel free to check out the \href{https://github.com/ntropy-unc/Cryptopals}{demo repository} ahead of time. If you have any questions, feel free to email me at lobcus@live.unc.edu or message me on the Slack (lobcus)!
+
+\end{document}
