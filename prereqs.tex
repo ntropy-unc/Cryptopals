@@ -4,26 +4,21 @@
 
 \begin{document}
 \centerline{\sc \large Cryptopals Preparation}
-
 \vspace{1pc}
-
 Hi! I'm going to go over Cryptopals Set $1$ on Monday. If you are currently in or past COMP 411 and know Python3, the demo should not be hard to understand, but if not, I strongly encourage you to read through this document.
 
-\vspace{1pc}
-
-The following is installation housekeeping:
-
+\section{Installation}
 \begin{itemize}
-	\item Install Python3 and pip3.
+	\item Feel free to code in any language or IDE.
+	\item If you want to copy me, get Python3, pip3, and vim.
 	\item Be able to import the Python3 modules base64, binascii, collections, and Crypto.Cipher. base64, binascii, and collections should have been installed by default, so you should only have to run the following command:
 		\begin{center}
 			sudo pip3 install pycrypto
 		\end{center}
 \end{itemize}
 
-\vspace{1pc}
-
-There will also be instructional housekeeping. The first three functions are the most important to research:
+\section{Functions}
+The first three functions are the most important to research:
 \begin{itemize}
 	\item b64encode/b64decode (module base64)
 	\item hexlify/unhexlify (module binascii)
@@ -32,6 +27,7 @@ There will also be instructional housekeeping. The first three functions are the
 	\item strip
 	\item map
 	\item join
+	\item zip
 \end{itemize}
 
 A difficult one to grasp is hexlify. It converts strings into a hexadecimal representation. Try playing around with it in Python3's interactive shell (type python3 in the terminal). You can look up a command with
@@ -41,13 +37,11 @@ A difficult one to grasp is hexlify. It converts strings into a hexadecimal repr
 	python3 -m pydoc chr
 \end{center}
 
-\vspace{1pc}
-
+\section{Data structures}
 When I program in Python3, I'll use sets and dictionaries. Sets are unordered collections of unique items. On the other hand, dictionaries map values to keys. Dictionary values = array indices not limited to integers, while dictionary keys = array elements. 
 
-\vspace{1pc}
-
-Next, familiarity with bitwise operations will be essential when we calculate Hamming distances. Assuming x is a binary number (only 1's and 0's):
+\section{Bitwise operations}
+Familiarity with bitwise operations will be essential when we calculate Hamming distances. Assuming x is a binary number (only 1's and 0's):
 \begin{itemize}
 	\item \verb|x & 1| retrieves its last bit
 		\begin{center}
@@ -68,11 +62,9 @@ Next, familiarity with bitwise operations will be essential when we calculate Ha
 	\item \verb|x ^ y| returns 0 if both bits are equal, else 1, if x and y are 0 or 1
 \end{itemize}
 
-\vspace{1pc}
-
+\section{List comprehensions}
 Finally, list comprehensions in Python3 are essentially one line for loops. The following two are the same:
 \begin{minted}[mathescape, linenos]{python}
-	
 	y = []
 	for x in range(4):
 		y.append(x)
@@ -82,8 +74,7 @@ Finally, list comprehensions in Python3 are essentially one line for loops. The 
 	# Note: Printing y would result in [0, 1, 2, 3]
 \end{minted}
 
-\vspace{1pc}
-
+\section{End}
 I hope you found some of this useful. Feel free to check out the \href{https://github.com/ntropy-unc/Cryptopals}{demo repository} ahead of time. If you have any questions, feel free to email me at lobcus@live.unc.edu or message me on the Slack (lobcus)!
 
 \end{document}
