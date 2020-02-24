@@ -1,0 +1,45 @@
+17 Padding Oracle Attack [1]
+
+Problem: Select at random one of the strings from 17.txt. Generate a random AES key and encrypt the padded string with a random IV using CBC encryption. An oracle should decrypt a string using before generated key and return whether the padding is correct.
+
+Attack:
+Let C' 		= attack cipher block.
+Let C'[k] 	= k'th byte of the attack cipher block.
+Let P' 		= AES CBC decrypted string of C' + C_n.
+Let P'_n	= n'th block of P'.
+Let P'_n	= k'th byte of n'th block of P'.
+Let K		= block size.
+
+By definition,
+	C_1 = E(P_1 ^ IV)
+	C_n = E(P_n ^ C_n-1) for all n > 1
+	P_1 = D(C_1) ^ IV
+	P_n = D(C_n) ^ C_n-1 for all n > 1
+
+For the decryption equations, substitute C' for C_n-1 and P' for P_n. Then,
+	P'_n = D(C_n) ^ C'
+	C_n = E(P_n ^ C_n-1)
+reveals
+	P_n = D(E(P_n ^ C_n-1)) ^ C' = P'_n ^ C_n-1 ^ C'
+
+You want P_n[k] to be a successful padded character, ie
+	P_n = 1 ^ C_n-1 ^ C'
+where C_n-1[k] will be the guessed character and C'[k] will be the kth character from one of the ciphertext blocks.
+
+You want to successfully feed the oracle C' =
+	0 * 15 + 1
+	0 * 14 + 2 * 2 ...
+but the last character must be the guess, and you must derive all other nonzeros with
+	P_n[k] = P'_n[k] ^ C_n-1[k] ^ C'[k]
+with a different k from before and with P_n[k] = C'[-1].
+
+[1]: https://blog.skullsecurity.org/2013/padding-oracle-attacks-in-depth
+
+18 Implement CTR [2]
+
+C_i = E((nonce + ctr)) ^ P_i
+P_i = E((nonce _ ctr)) ^ C_i
+
+Both CTR encryption and decryption use ECB encryption.
+
+[2]: https://www.youtube.com/watch?v=6EbyCGrdKh8
