@@ -46,7 +46,7 @@ class Mersenne:
         y = y ^ (y >> self.l)
         self.index = (self.index + 1) % self.n
 
-        return y & self.mask
+        return y
 
 if __name__ == '__main__':
     m = Mersenne()
